@@ -1,0 +1,134 @@
+package com.labcode.gui;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
+import com.labcode.gui.clicklistener.ClickListener;
+import com.labcode.gui.panel.Panel;
+import com.labcode.gui.panel.Toolbox;
+import com.labcode.math.Vector;
+import com.labcode.project.Project;
+import com.labcode.zstack.ZStack;
+
+public class UserInterface {
+
+	protected Project project;
+	protected GUIDisplayManager guiDisplayManager = new GUIDisplayManager();
+	protected ArrayList<Panel> panels = new ArrayList<Panel>();
+	
+	private boolean currentlyTouched;
+	
+	/** Constructor
+	 */
+	public UserInterface(Project project) {
+		this.project = project;
+		panels.add(new Toolbox(project));
+	}
+	
+	/** Draws everything to the screen
+	 */
+	public void render() {
+		guiDisplayManager.drawShapes1(this);
+		guiDisplayManager.drawBatch1(this);
+		guiDisplayManager.drawShapes2(this);
+		guiDisplayManager.drawBatch2(this);
+		ZStack.stage.draw();
+		guiDisplayManager.drawShapes3(this);
+	}
+	
+	/** Decomposes a click into its three phases, the first frame during which it was clicked, the last frame, and everything
+	 * between.
+	 */
+	private void handleClickEvent() {
+		isJustTouched();
+		isTouched();
+		isTouchReleased();
+	}
+	
+	/** Executes any necessary operations that occur when hovering
+	 * @param deltaTime
+	 */
+	private void handleHover(float deltaTime) {
+		Vector mousePos = ClickListener.getMousePos();
+		Vector diff;
+		for(Panel panel : panels) {
+			//find which panel the cursor is inside. Once found, handleHover is run on that panel and the loop is broken
+			diff = panel.getPos().add(panel.getDim().scl(0.5f)).sub(mousePos);
+			if(Math.abs(diff.x) <= panel.getDim().x/2 && Math.abs(diff.y) <= panel.getDim().y/2) {
+				panel.handleHover(deltaTime);
+				break;
+			}
+		}
+	}
+	
+	/** Executes any necessary operations that occur as a result of keys being pressed
+	 */
+	private void handleKeyPressEvent() {
+		for(Panel panel : panels) {
+			panel.handleKeyPress();
+		}
+	}
+	
+	private void isJustTouched() {
+		if(Gdx.input.justTouched()) {
+			for(Panel panel : panels) {
+				//TODO this very well might cause some issues later... we'll see I suppose
+				try {
+					if(panel.isVisible()) {
+						panel.isJustTouched();
+					}
+				} catch(NullPointerException ex) {
+					System.out.println("NPE");
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	private void isTouched() {
+		if(Gdx.input.isTouched()) {
+			for(Panel panel : panels) {
+				try {
+					if(panel.isVisible()) {
+						panel.isTouched();
+					}
+				} catch(NullPointerException ex) {
+					System.out.println("NPE");
+					ex.printStackTrace();
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+			currentlyTouched = true;
+		}
+	}
+	
+	private void isTouchReleased() {
+		if(!Gdx.input.isTouched() && currentlyTouched) {
+			for(Panel panel : panels) {
+				try {
+					if(panel.isVisible()) {
+						panel.isTouchReleased();
+					}
+				} catch(NullPointerException ex) {
+					System.out.println("NPE");
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+			currentlyTouched = false;
+		}
+	}
+	
+	/** Carries out all operations that need to occur before rendering
+	 * @param deltaTime
+	 */
+	public void update(float deltaTime) {
+		ClickListener.setMousePos(Gdx.input.getX(), ZStack.height - Gdx.input.getY());
+		
+		handleKeyPressEvent();
+		handleClickEvent();
+		handleHover(deltaTime);
+	}
+}

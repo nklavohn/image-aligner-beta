@@ -1,0 +1,34 @@
+package com.labcode.gui.menubar;
+
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.labcode.gui.ColorManager;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public class LineBreak extends ListItem {
+
+	public static final int itemHeight = 15;
+	
+	public LineBreak(Vector pos) {
+		super(null, null, pos);
+	}
+
+	/** unused */
+	@Override
+	public void displayBatch2() {}
+
+	@Override
+	public void displayShapes2() {
+		ZStack.shapes.set(ShapeType.Line);
+		ZStack.shapes.setColor(ColorManager.getQuatenaryColor());
+		ZStack.shapes.line(pos.x + Dropdown.pad, pos.y + itemHeight/2, pos.x + Dropdown.DEFAULT_WIDTH - Dropdown.pad, pos.y + itemHeight/2);
+	}
+	
+	/** unused */
+	@Override
+	public void isJustTouched() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,86 @@
+package com.labcode.math;
+
+public class DimensionHandler {
+	
+	private static final float DEFAULT_MICRONS_TO_PIXELS = 3.333f;
+	private float umPerPxl;
+	
+	/** Creates a dimension handler with the parametrized ratio of microns to pixels
+	 * @param umPerPxl
+	 */
+	public DimensionHandler(float umPerPxl) {
+		this.umPerPxl = umPerPxl;
+	}
+	
+	/** Creates a dimension handler with the default micron to pixel ratio
+	 */
+	public DimensionHandler() {
+		this.umPerPxl = DEFAULT_MICRONS_TO_PIXELS;
+	}
+	
+	/**
+	 * Unit conversion from pixels to microns
+	 * @param pixels, float describing length in pixels
+	 * @return float describing length in microns
+	 */
+	public float convertPxlsToMicrons(float pixels) {
+		return pixels*umPerPxl;
+	}
+	
+	/**
+	 * Unit conversion from pixels to microns
+	 * @param pixels, Vector in units of pixels
+	 * @return Vector in units of microns
+	 */
+	public Vector convertPxlsToMicrons(Vector pixels) {
+		return pixels.scl(umPerPxl);
+	}
+	
+	/**
+	 * Unit conversion from microns to pixels
+	 * @param microns, float describing length in microns
+	 * @return float describing length in pixels
+	 */
+	public float convertMicronsToPxls(float microns) {
+		return microns/umPerPxl;
+	}
+	
+	/**
+	 * Unit conversion from microns to pixels
+	 * @param microns, Vector in units of microns
+	 * @return Vector in units of pixels
+	 */
+	public Vector convertMicronsToPxls(Vector microns) {
+		return microns.scl(1/umPerPxl);
+	}
+	
+	/**
+	 * @return the ratio of microns per pixel
+	 */
+	public float getUmPerPxl() { 
+		return umPerPxl; 
+	}
+	
+	/**
+	 * @return the ratio of pixels per micron
+	 */
+	public float getPxlPerUm() { 
+		return 1/umPerPxl; 
+	}
+	
+	/**
+	 * Sets the micron per pixel ratio, umPerPxl, to the parametrized value
+	 * @param umPerPxlNew
+	 */
+	public void setUmPerPxl(float umPerPxlNew) { 
+		umPerPxl = umPerPxlNew; 
+	}
+	
+	/**
+	 * Sets the micron per pixel ratio, umPerPxl, to the parametrized value
+	 * @param pxlPerUm
+	 */
+	public void setPxlPerUm(float pxlPerUm) { 
+		umPerPxl = 1/pxlPerUm; 
+	}
+}

@@ -1,0 +1,121 @@
+package com.labcode.gui.clicklistener;
+
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.labcode.gui.ColorManager;
+import com.labcode.gui.panel.Panel;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public class IconButton extends Button {
+	
+	private Texture tex;
+	private float hoverTime;
+	private float threshold;
+	private Label hoverName;
+	private int alignment;
+	
+	/** Constructor
+	 * @param buttonName will be displayed in the hover label
+	 * @param panelName the name of the panel this belongs to
+	 * @param cPos center position of the button
+	 * @param dim dimensions of the button
+	 * @param handle FileHandle to the texture
+	 * @param rel vector from cPos to the bottom left corner of the hoverName
+	 * @param alignment
+	 */
+	public IconButton(String buttonName, String panelName, Vector cPos, Vector dim, FileHandle handle, Vector rel, int alignment) {
+		super(buttonName, cPos, dim);
+		
+		tex = new Texture(handle);
+		threshold = 0.25f;
+		
+		this.alignment = alignment;
+		hoverName = new Label(buttonName, ZStack.skin);
+		hoverName.setWidth(200);
+		hoverName.setHeight(Panel.getStgHeight());
+		hoverName.setAlignment(alignment);
+		hoverName.setPosition(cPos.x + rel.x, cPos.y + rel.y);
+		hoverName.setName(panelName + ":" + buttonName);
+	}
+	
+	/** Batch */
+	@Override
+	public void drawButtonBatch() {
+		Color color = (isActive) ? ColorManager.getIconColorActive() : ColorManager.getIconColorInactive();
+		ZStack.batch.setColor(color);
+		ZStack.batch.draw(tex, (int)cPos.x - tex.getWidth()/2, (int)cPos.y - tex.getHeight()/2);
+		ZStack.batch.setColor(1, 1, 1, 1);
+	}
+	
+	/** ShapeRenderer */
+	@Override
+	public void drawButtonShapes() {
+		if(isActive) {
+			ZStack.shapes.set(ShapeType.Filled);
+			ZStack.shapes.setColor(ColorManager.getQuatenaryColor());
+			ZStack.shapes.rect(cPos.x - dim.x/2, cPos.y - dim.y/2, dim.x, dim.y);
+		}
+	}
+ 	
+	/**
+	 * @return returns true only if the button was just clicked, 
+	 */
+	@Override
+	public boolean isJustTouched() {
+		if(isBeneathCursor()) {
+			isActive = !isActive;
+			return true;
+		}
+		return false;
+	}
+
+	/** Runs continuously while the button is hovered over. After reaching a threshold amount of time,
+	 * the hover label is activated
+	 */
+	@Override
+	public void onHover(float deltaTime) {
+		if(isBeneathCursor()) {
+			hoverTime += deltaTime;
+			if(hoverTime >= threshold && hoverTime - deltaTime < threshold) {
+				/*Label label = new Label(hoverName.getText(), ZStack.skin);
+				label.setWidth(hoverName.getWidth());
+				label.setHeight(hoverName.getHeight());
+				label.setPosition(hoverName.getX(), hoverName.getY());
+				label.setAlignment(alignment);
+				label.setName(hoverName.getName());
+				ZStack.stage.addActor(label);*/
+				ZStack.stage.addActor(hoverName);
+			}
+		} else {
+			if(hoverTime != 0) {
+				hoverTime = 0;
+				int index = -1;
+				for(int i = 0; i < ZStack.stage.getActors().size; i++) {
+					if(hoverName.getName().equals(ZStack.stage.getActors().get(i).getName())) {
+						index = i;
+						break;
+					}
+				}
+				
+				if(index != -1) {
+					System.out.println(hoverName.getX() + " " + hoverName.getY());
+					System.out.println(ZStack.stage.getActors().size);
+					hoverName = (Label) ZStack.stage.getActors().removeIndex(index);
+					System.out.println(hoverName.getX() + " " + hoverName.getY());
+					System.out.println(ZStack.stage.getActors().size);
+
+				}
+			}
+		}
+	}
+
+	@Override
+	public void runShutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+}

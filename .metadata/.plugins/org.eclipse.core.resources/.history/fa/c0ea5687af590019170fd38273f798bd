@@ -1,0 +1,128 @@
+package com.labcode.gui.menubar;
+
+import java.awt.SystemColor;
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.labcode.gui.ColorManager;
+import com.labcode.gui.panel.Panel;
+import com.labcode.math.Vector;
+import com.labcode.project.Project;
+import com.labcode.zstack.ZStack;
+
+public class Menubar extends Panel {
+
+	private Project project;
+	private ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+	private Color color;
+	
+	public Menubar(Project project) {
+		super("Menubar", new Vector(0, ZStack.height - 22), new Vector(ZStack.width, 22));
+		this.project = project;
+		
+		initializeMenuBar();
+		isVisible = true;
+		SystemColor sysColor = SystemColor.windowBorder;
+		color = new Color((float)sysColor.getRed()/255f, (float)sysColor.getGreen()/255f, (float)sysColor.getBlue()/255f, 1);
+	}
+
+	@Override
+	public void drawBatch1() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawBatch2() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void drawPanel() {
+		ZStack.shapes.set(ShapeType.Filled);
+		//Color color = ColorManager.getTertiaryColor();
+		//ZStack.shapes.setColor(color.r, color.g, color.b, 0.6f);
+		ZStack.shapes.setColor(color);
+		ZStack.shapes.rect(pos.x, pos.y, dim.x, dim.y);
+	}
+
+	@Override
+	public void drawShapes1() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawShapes2() {
+		drawPanel();
+	}
+
+	@Override
+	public void drawShapes3() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/** basically just constructs the menubar... making the menu items and everything
+	 */
+	private void initializeMenuBar() {
+		Vector miPos = new Vector(smallPad, ZStack.height - dim.y + smallPad/2);
+		String[] strings = {"File", "Edit", "View", "Tools", "Help" };
+		
+		for(String string : strings) {
+			Label miLabel = new Label(string, ZStack.skin);
+			Vector miDim = new Vector(miLabel.getWidth() + smallPad, dim.y);
+			MenuItem item = new MenuItem(string, miPos.add(miDim.scl(0.5f)), miDim, miLabel);
+			menuItems.add(item);
+			miPos.x += miDim.x;
+		}
+	}
+
+	@Override
+	public void isJustTouched() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void isTouched() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void isTouchReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleHover(float deltaTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleKeyPress() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleResize() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateClickHandlers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

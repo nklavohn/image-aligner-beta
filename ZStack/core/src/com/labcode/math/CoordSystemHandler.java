@@ -1,0 +1,75 @@
+package com.labcode.math;
+
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.labcode.gui.ColorManager;
+import com.labcode.zstack.ZStack;
+
+public class CoordSystemHandler {
+
+	/* Here the images exist in a world measured with dimensions in microns. The Vector, originPos, maps the origin of the screen
+	 * (which is always the bottom left corner) to the origin of the world and has units of pixels.
+	 * 
+	 * As a default, screen positions are always measured in pixels and world positions are measured in microns
+	 */
+	
+	
+	//a vector from the screen origin (bottom left) to the world origin, measured in pixels
+	private Vector originPos = new Vector(ZStack.DEF_WIDTH/2, ZStack.DEF_HEIGHT/2);
+	private DimensionHandler dimensionHandler;
+	
+	public CoordSystemHandler(DimensionHandler dimensionHandler) {
+		this.dimensionHandler = dimensionHandler;
+	}
+	
+	/**
+	 * Converts a vector in the screen coordinate system to one in the world system
+	 * @param scrnPos, Vector for screen position in pixels
+	 * @return worldPos, Vector for world position in microns
+	 */
+	public Vector convertScrnPosToWorldPos(Vector scrnPos) {
+		return dimensionHandler.convertPxlsToMicrons(scrnPos.sub(originPos));
+	}
+	
+	/**
+	 * Converts a vector in the world coordinate system to one in the screen system
+	 * @param worldPos, Vector for world position in microns
+	 * @return scrnPos, Vector for screen position in pixels
+	 */
+	public Vector convertWorldPosToScrnPos(Vector worldPos) {
+		return dimensionHandler.convertMicronsToPxls(worldPos).add(originPos);
+	}
+	
+	/**
+	 * displays the world origin as a diamond
+	 */
+	public void displayWorldOrigin() {
+		ZStack.shapes.setColor(ColorManager.getOriginColor());
+		ZStack.shapes.set(ShapeType.Filled);
+		ZStack.shapes.rect(originPos.x, originPos.y, 4, 4, 8, 8, 1, 1, 45);
+	}
+	
+	/**
+	 * displays two lines at x = 0 and y = 0
+	 */
+	public void displayGridLines() {
+		ZStack.shapes.setColor(ColorManager.getGridColor());
+		ZStack.shapes.set(ShapeType.Line);
+		ZStack.shapes.line(originPos.x, 0, originPos.x, ZStack.height);
+		ZStack.shapes.line(0, originPos.y, ZStack.width, originPos.y);
+	}
+	
+	/**
+	 * @return the origin position
+	 */
+	public Vector getOriginPos() { 
+		return originPos; 
+	}
+	
+	/**
+	 * Sets the origin position to the parametrized Vector value
+	 * @param newOriginPos
+	 */
+	public void setOriginPos(Vector newOriginPos) {
+		originPos.set(newOriginPos);
+	}
+}

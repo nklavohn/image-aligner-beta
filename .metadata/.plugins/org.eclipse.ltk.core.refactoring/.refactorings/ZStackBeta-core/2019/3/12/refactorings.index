@@ -1,0 +1,18 @@
+1552957007315	Move compilation unit
+1552957016466	Move compilation unit
+1553007809197	Rename field 'title'
+1553007816963	Rename local variable 'title'
+1553009344367	Move compilation units
+1553016467120	Encapsulate field 'stgHeight'
+1553016561722	Rename local variable 'name'
+1553016720172	Rename field 'time'
+1553016985078	Rename method 'drawTitle'
+1553089636423	Move compilation units
+1553089641920	Delete element
+1553274463306	Rename package 'com.labcode.gui.clicklisteners'
+1553274847930	Rename method 'displayShapes1'
+1553274852980	Rename method 'displayBatch1'
+1553274857462	Rename method 'displayShapes2'
+1553274863390	Rename method 'displayBatch2'
+1553274868194	Rename method 'displayShapes3'
+1553287430716	Rename compilation unit 'HotKeyManager.java'

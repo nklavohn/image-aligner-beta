@@ -1,0 +1,27 @@
+package com.labcode.gui.menubar;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.labcode.gui.clicklistener.RectClickListener;
+import com.labcode.zstack.ZStack;
+
+public class MenuItem extends RectClickListener implements Active {
+	
+	private Label label;
+	private boolean isActive;
+	
+	public MenuItem(String name) {
+		label = new Label(name, ZStack.skin);
+	}
+
+	@Override
+	public boolean isJustTouched() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onHover(float deltaTime) {
+		// TODO Auto-generated method stub
+		
+	}
+}

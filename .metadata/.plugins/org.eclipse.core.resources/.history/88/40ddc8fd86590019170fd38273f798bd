@@ -1,0 +1,10 @@
+package com.labcode.gui.menubar;
+
+public class MenuItem {
+	
+	
+	
+	public MenuItem() {
+		
+	}
+}

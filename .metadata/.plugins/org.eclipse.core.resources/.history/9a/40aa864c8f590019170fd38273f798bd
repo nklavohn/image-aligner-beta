@@ -1,0 +1,51 @@
+package com.labcode.gui.menubar;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.labcode.gui.Active;
+import com.labcode.gui.clicklistener.Button;
+import com.labcode.gui.clicklistener.RectClickListener;
+import com.labcode.gui.clicklistener.TextButton;
+import com.labcode.gui.panel.Panel;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public class MenuItem extends TextButton {
+	
+	private Label label;
+	private Dropdown dropdown;
+	
+	public MenuItem(String name, Vector cPos, Vector dim, Label label) {
+		super(name, cPos, new Vector(label.getWidth() + Panel.smallPad, height));
+		this.label = label;
+	}
+	
+	/** unused */
+	@Override
+	public void drawButtonBatch() {
+		
+	}
+	
+	
+	@Override
+	public void drawButtonShapes() {
+		debugDisplay();
+	}
+
+	@Override
+	public boolean isJustTouched() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onHover(float deltaTime) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void runShutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+}

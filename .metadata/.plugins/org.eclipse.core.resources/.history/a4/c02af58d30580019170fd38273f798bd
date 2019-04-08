@@ -1,0 +1,7 @@
+package com.labcode.gui.tool;
+
+import com.labcode.edithistory.HistoryEvent;
+
+public class CropTool extends Tool {
+
+}

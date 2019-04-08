@@ -1,0 +1,20 @@
+package com.labcode.gui.menubar;
+
+import java.util.ArrayList;
+
+public class Dropdown {
+	
+	private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+	private Vector pos;
+	private Vector dim;
+	
+	public Dropdown(String name, Vector pos, Vector dim) {
+		this.pos = pos;
+		this.dim = dim
+		initialize();
+	}
+	
+	private void initialize() {
+		
+	}
+}

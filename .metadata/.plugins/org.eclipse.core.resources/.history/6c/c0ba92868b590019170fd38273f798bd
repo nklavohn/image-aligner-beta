@@ -1,0 +1,55 @@
+package com.labcode.gui.menubar;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.labcode.gui.Active;
+import com.labcode.gui.clicklistener.Button;
+import com.labcode.gui.clicklistener.RectClickListener;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public class MenuItem extends Button implements Active {
+	
+	private Label label;
+	private boolean isActive;
+	private Dropdown dropdown;
+	
+	public MenuItem(String name, Vector cPos, Vector dim) {
+		super(name, cPos, dim);
+		label = new Label(name, ZStack.skin);
+		label.setPosition(cPos, y);
+	}
+	
+	/** unused */
+	@Override
+	public void drawButtonBatch() {
+	}
+	
+	
+	@Override
+	public void drawButtonShapes() {
+
+	}
+
+	@Override
+	public boolean isJustTouched() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onHover(float deltaTime) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void runShutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override public boolean isActive() { return isActive; }
+	@Override public void setIsActive(boolean b) { isActive = b; }
+	@Override public void setActive() { isActive = true; }
+	@Override public void setInactive() { isActive = false; }
+}

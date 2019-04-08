@@ -1,0 +1,26 @@
+package com.labcode.gui.menubar;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.labcode.zstack.ZStack;
+
+public abstract class ListItem {
+	
+	private ArrayList<Label> labels;
+	
+	public abstract void displayBatch2();
+	public abstract void displayShapes2();
+	public abstract void isJustTouched();
+	
+	public void addToStage() {
+		for(Label label : labels) 
+			ZStack.stage.addActor(label);
+	}
+	
+	public void removeFromStage() {
+		for(Label label : labels)
+			label.remove();
+	}
+	
+}

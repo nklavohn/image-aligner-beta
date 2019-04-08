@@ -1,0 +1,64 @@
+package com.labcode.project;
+
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.labcode.gui.ColorManager;
+import com.labcode.math.CoordSystemHandler;
+import com.labcode.math.DimensionHandler;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public class ConfocalImage {
+
+	private FileHandle handle;
+	private TextureRegion image;
+	private Vector cPos;  //world position of the center of the image in microns
+	private Vector dim;  //dimensions of the image in microns
+	private float rotation;
+	private boolean isSelected;
+	private Project project;
+	
+	/**
+	 * @param handle filehandle to the texture
+	 * @param cPos world position of the center of the image in microns
+	 * @param dim dimensions of the image in microns
+	 * @param rotation measured in degrees
+	 */
+	public ConfocalImage(FileHandle handle, Vector cPos, Vector dim, float rotation) {
+		this.handle = handle;
+		this.cPos = cPos;
+		this.dim = dim;
+		this.rotation = rotation;
+		
+		image = new TextureRegion(new Texture(handle));
+		isSelected = false;
+	}
+	
+	/** Draws this object to the screen, a different color if currently selected
+	 */
+	public void drawImage() {
+		Color color = isSelected ? ColorManager.getSelectedImageTint() : ColorManager.WHITE;
+		//TODO remove transparency here
+		Vector pos = CoordSystemHandler.convertWorldPosToScrnPos(cPos);
+		Vector dimm = DimensionHandler.convertMicronsToPxls(dim);
+		ZStack.batch.draw(image, pos.x - dimm.x/2, pos.y - dimm.y/2, 0, 0, dimm.x, dimm.y, 1, 1, rotation);
+		ZStack.batch.setColor(1, 1, 1, 1);
+	}
+	
+	@Override
+	public String toString() {
+		return handle.name();
+	}
+	
+	/* Getters and setters */
+	public float getRotation() { return rotation; }
+	public Vector getCPos() { return cPos; }
+	public Vector getDim() { return dim; }
+	public boolean isSelected() { return isSelected; }
+	public void setRotation(float rotation) { this.rotation = rotation; }
+	public void setCPos(Vector cPos) { this.cPos.set(cPos); }
+	public void setDim(Vector dim) { this.dim.set(dim); }
+	public void setIsSelected(boolean b) { isSelected = b; }
+}

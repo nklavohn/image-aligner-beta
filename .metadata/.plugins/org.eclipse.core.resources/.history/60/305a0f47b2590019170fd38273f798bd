@@ -1,0 +1,14 @@
+package com.labcode.gui.menubar;
+
+import java.util.ArrayList;
+
+public class Dropdown {
+	
+	private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+	
+	public Dropdown() {
+		
+	}
+	
+	
+}

@@ -1,0 +1,12 @@
+package com.labcode.gui;
+
+public interface Visible {
+
+	boolean isVisible = false;
+	
+	boolean isVisible();
+	void setIsVisible(boolean b);
+	void setVisible();
+	void setInvisible();
+	
+}

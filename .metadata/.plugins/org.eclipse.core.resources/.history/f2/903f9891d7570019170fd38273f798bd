@@ -1,0 +1,80 @@
+package com.labcode.math;
+
+public class DimensionHandler {
+	
+	private static final float DEFAULT_MICRONS_TO_PIXELS = 3.333f;
+	private float umPerPxl = DEFAULT_MICRONS_TO_PIXELS;
+	
+	/** Creates a dimension handler with the parametrized ratio of microns to pixels
+	 * @param umPerPxl
+	 */
+	public DimensionHandler(float umPerPxl) {
+		this.umPerPxl = umPerPxl;
+	}
+	
+	/**
+	 * Unit conversion from pixels to microns
+	 * @param pixels, float describing length in pixels
+	 * @return float describing length in microns
+	 */
+	public float convertPxlsToMicrons(float pixels) {
+		return pixels*umPerPxl;
+	}
+	
+	/**
+	 * Unit conversion from pixels to microns
+	 * @param pixels, Vector in units of pixels
+	 * @return Vector in units of microns
+	 */
+	public Vector convertPxlsToMicrons(Vector pixels) {
+		return pixels.scl(umPerPxl);
+	}
+	
+	/**
+	 * Unit conversion from microns to pixels
+	 * @param microns, float describing length in microns
+	 * @return float describing length in pixels
+	 */
+	public static float convertMicronsToPxls(float microns) {
+		return microns/umPerPxl;
+	}
+	
+	/**
+	 * Unit conversion from microns to pixels
+	 * @param microns, Vector in units of microns
+	 * @return Vector in units of pixels
+	 */
+	public static Vector convertMicronsToPxls(Vector microns) {
+		return microns.scl(1/umPerPxl);
+	}
+	
+	/**
+	 * @return the ratio of microns per pixel
+	 */
+	public static float getUmPerPxl() { 
+		return umPerPxl; 
+	}
+	
+	/**
+	 * @return the ratio of pixels per micron
+	 */
+	public static float getPxlPerUm() { 
+		return 1/umPerPxl; 
+	}
+	
+	/**
+	 * Sets the micron per pixel ratio, umPerPxl, to the parametrized value
+	 * @param umPerPxlNew
+	 */
+	public static void setUmPerPxl(float umPerPxlNew) { 
+		umPerPxl = umPerPxlNew; 
+	}
+	
+	/**
+	 * Sets the micron per pixel ratio, umPerPxl, to the parametrized value
+	 * @param pxlPerUm
+	 */
+	public static void setPxlPerUm(float pxlPerUm) { 
+		umPerPxl = 1/pxlPerUm; 
+	}
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="IconColorInactive" key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="IconColorInactive"/>
+			<item value="iconColorInactive"/>
+			<item value="iconColor"/>
+			<item value=" Color "/>
+			<item value="return "/>
+			<item value="()"/>
+			<item value="get"/>
+			<item value="justTouched"/>
+			<item value="MathUtils"/>
+		</list>
+		<list key="replacehistory">
+			<item value="selectedImageTint"/>
+			<item value=" "/>
+			<item value="this."/>
+			<item value="(Color color)"/>
+			<item value="set"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="327" key="DIALOG_WIDTH"/>
+		<item value="1|Noto Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="433" key="DIALOG_HEIGHT"/>
+		<item value="1053" key="DIALOG_X_ORIGIN"/>
+		<item value="285" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

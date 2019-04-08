@@ -1,0 +1,20 @@
+package com.labcode.gui.menubar;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+public abstract class ListItem {
+	
+	private Label label;
+	private String name;
+	
+	
+	
+	public void addToStage() {
+		
+	}
+	
+	public void removeFromStage() {
+		
+	}
+	
+}

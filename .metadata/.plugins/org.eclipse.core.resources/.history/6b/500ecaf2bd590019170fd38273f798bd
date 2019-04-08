@@ -1,0 +1,55 @@
+package com.labcode.gui.menubar;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.labcode.gui.ColorManager;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public class Dropdown {
+	
+	private static final int DEFAULT_WIDTH = 200;
+	
+	private String name;
+	private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+	private Vector pos; //position of the top left corner of the dropdown
+	private Vector dim;
+	
+	/** Constructor
+	 * @param name
+	 * @param pos Vector for top left corner
+	 */
+	public Dropdown(String name, Vector pos) {
+		this.name = name;
+		this.pos = pos;
+	}
+	
+	public void displayBatch2() {
+		for(ListItem item : listItems) {
+			item.displayBatch2();
+		}
+	}
+	
+	public void displayShapes2() {
+		ZStack.shapes.set(ShapeType.Filled);
+		ZStack.shapes.setColor(ColorManager.getMenuBarColor());
+		for(ListItem item : listItems) {
+			item.displayShapes2();
+		}
+	}
+	
+	/** Sets the value of the ListItems ArrayList and establishes the dimensions of the dropdown
+	 * @param listItems
+	 */
+	public void setListItems(ArrayList<ListItem> listItems) { 
+		this.listItems = listItems;
+		float sum = 0;
+		for(ListItem item : listItems) {
+			sum += item.getDim().y;
+		}
+	}
+	
+	/* Getters and setters */
+	public ArrayList<ListItem> getListItems() { return listItems; }
+}

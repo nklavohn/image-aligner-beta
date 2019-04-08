@@ -1,0 +1,12 @@
+package com.labcode.gui.menubar;
+
+public class Dropdown {
+	
+	private ArrayList<ListItem> listItems = new ArrayList<ListItem>();
+	
+	public Dropdown() {
+		
+	}
+	
+	
+}

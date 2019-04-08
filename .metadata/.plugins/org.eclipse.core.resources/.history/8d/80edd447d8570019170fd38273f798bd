@@ -1,0 +1,40 @@
+package com.labcode.project;
+
+import java.util.ArrayList;
+
+public class Project {
+	
+	private String name;
+	private ArrayList<Layer> layers = new ArrayList<Layer>();
+	private boolean isSelected;
+	
+	public Project() {
+		isSelected = true;
+	}
+	
+	/** Displays the project by drawing all of the layers it is comprised of
+	 */
+	
+	public void drawShapes1() {
+		
+	}
+
+	public void drawBatch1() {
+		for(Layer layer : layers) {
+			if(layer.isVisible()) {
+				layer.drawLayer();
+			}
+		}
+	}
+	
+	public void drawShapes2() {
+		
+	}
+	
+	/* Getters and setters */
+	public ArrayList<Layer> getLayers() { return layers; }
+	public void setName(String name) { this.name = name; }
+	public String getName() { return name; }
+	public boolean isSelected() { return isSelected; }
+	public void setIsSelected(boolean b) { isSelected = b; }
+}

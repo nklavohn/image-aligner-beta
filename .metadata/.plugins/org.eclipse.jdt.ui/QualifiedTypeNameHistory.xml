@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.badlogic.gdx.utils.viewport.ScreenViewport"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.glutils.ShapeRenderer"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.Stage"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.Screen"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.GL20"/>
+<fullyQualifiedTypeName name="com.labcode.screens.EditorScreen"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.Colors"/>
+<fullyQualifiedTypeName name="com.labcode.graphics.GUIDisplayManager"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.math.Matrix4"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.OrthographicCamera"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.ImageButton"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Table"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.TextButton"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Skin"/>
+<fullyQualifiedTypeName name="com.labcode.graphics.ColorManager"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.Actor"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.math.Vector2"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Label"/>
+<fullyQualifiedTypeName name="com.labcode.gui.clicklisteners.IconButton"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.utils.Align"/>
+<fullyQualifiedTypeName name="com.labcode.gui.panel.Toolbox"/>
+<fullyQualifiedTypeName name="com.labcode.gui.UserInterface"/>
+<fullyQualifiedTypeName name="com.labcode.gui.panel.Panel"/>
+<fullyQualifiedTypeName name="com.labcode.edithistory.HistoryEvent"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.Input.Keys"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="com.labcode.gui.clicklistener.IconButton"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType"/>
+<fullyQualifiedTypeName name="com.labcode.gui.clicklistener.ClickListener"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.labcode.zstack.ZStack"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.g2d.TextureRegion"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.files.FileHandle"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.Texture"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.Color"/>
+<fullyQualifiedTypeName name="com.labcode.gui.ColorManager"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.Gdx"/>
+<fullyQualifiedTypeName name="com.labcode.math.Vector"/>
+<fullyQualifiedTypeName name="com.labcode.project.Project"/>
+<fullyQualifiedTypeName name="com.labcode.math.CoordSystemHandler"/>
+<fullyQualifiedTypeName name="com.labcode.math.DimensionHandler"/>
+</qualifiedTypeNameHistroy>

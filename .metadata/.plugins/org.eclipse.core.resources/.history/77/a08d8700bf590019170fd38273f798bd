@@ -1,0 +1,30 @@
+package com.labcode.gui.menubar;
+
+import com.labcode.math.Vector;
+
+public class LineBreak extends ListItem {
+
+	
+	public LineBreak(Vector pos) {
+		super(null, null, pos);
+	}
+
+	@Override
+	public void displayBatch2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayShapes2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void isJustTouched() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,46 @@
+package com.labcode.gui.menubar;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.labcode.gui.clicklistener.RectClickListener;
+import com.labcode.math.Vector;
+import com.labcode.zstack.ZStack;
+
+public abstract class ListItem extends RectClickListener {
+	
+	private RectClickListener clickListener;
+	private ArrayList<Label> labels;
+	
+	/** Constructor, makes the labels for the item based on parametrized strings
+	 * @param name
+	 * @param shortcut
+	 * @param pos Vector the bottom left corner
+	 */
+	public ListItem(String nameString, String shortcutString, Vector pos) {
+		super(name, pos.add(Dropdown.DEFAULT_WIDTH/2, itemHeight));
+		Label name = new Label(nameString,ZStack.skin);
+		name.setPosition(x, y);
+	}
+	
+	public abstract void displayBatch2();
+	public abstract void displayShapes2();
+	public abstract void isJustTouched();
+	
+	/** adds the labels to the stage
+	 */
+	public void addToStage() {
+		for(Label label : labels) 
+			ZStack.stage.addActor(label);
+	}
+	
+	/** Remove the labels from the stage
+	 */
+	public void removeFromStage() {
+		for(Label label : labels)
+			label.remove();
+	}
+	
+	/* Getters and setters */
+	public Vector getPos() { return cPos.add(dim.scl(-0.5f)); }
+}

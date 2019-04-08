@@ -1,0 +1,34 @@
+package com.labcode.gui.tool;
+
+import com.labcode.edithistory.HistoryEvent;
+
+public abstract class Tool {
+
+	public abstract boolean applyHotkeys();
+	public abstract void debugDisplay();
+	public abstract void displayToolShapes();
+	public abstract void displayToolBatch();
+	public abstract void onClick();
+	public abstract void onHover();
+	public abstract void onKeyPress();
+	protected abstract HistoryEvent writeHistoryEvent();
+	
+	public static Tool getTool(String s) {
+		switch (s) {
+		//"Select", "Translate", "Rotate", "Zoom", "Save", "Export"
+		case "Select":
+			return new SelectTool();
+		case "Translate":
+			return new TranslateTool();
+		case "Rotate":
+			return new RotateTool();
+		case "Zoom":
+			return new ZoomTool();
+		case "Crop":
+			return new CropTool();
+		default:
+			System.out.println("that tool doesn't exist");
+			return null;
+		}
+	}
+}

@@ -1,0 +1,100 @@
+package com.labcode.gui;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
+import com.labcode.gui.clicklistener.ClickListener;
+import com.labcode.gui.panel.Panel;
+import com.labcode.gui.panel.Toolbox;
+import com.labcode.gui.tool.TranslateTool;
+import com.labcode.math.Vector;
+import com.labcode.project.Project;
+import com.labcode.zstack.ZStack;
+
+public class UserInterface {
+
+	protected GUIDisplayManager guiDisplayManager = new GUIDisplayManager();
+	protected ArrayList<Panel> panels = new ArrayList<Panel>();
+	protected ArrayList<Project> projects = new ArrayList<Project>();
+	protected TranslateTool translateTool = new TranslateTool();
+	protected int curProj;
+	
+	private boolean currentlyTouched;
+	
+	/** Constructor
+	 */
+	public UserInterface() {
+		panels.add(new Toolbox());
+		projects.add(new Project());
+		curProj = 0;
+	}
+	
+	/** Draws everything to the screen
+	 */
+	public void render() {
+		guiDisplayManager.drawShapes1(this);
+		guiDisplayManager.drawBatch1(this);
+		guiDisplayManager.drawShapes2(this);
+		guiDisplayManager.drawBatch2(this);
+		ZStack.stage.draw();
+		guiDisplayManager.drawShapes3(this);
+	}
+	
+	/** Decomposes a click into its three phases, the first frame during which it was clicked, the last frame, and everything
+	 * between.
+	 */
+	private void handleClickEvent() {
+		isJustTouched();
+		isTouched();
+		isTouchReleased();
+	}
+	
+	/** Executes any necessary operations that occur when hovering
+	 * @param deltaTime
+	 */
+	private void handleHover(float deltaTime) {
+		Vector mousePos = ClickListener.getMousePos();
+		Vector diff;
+		for(Panel panel : panels) {
+			diff = panel.getPos().add(panel.getDim().scl(0.5f)).sub(mousePos);
+			if(Math.abs(diff.x) <= panel.getDim().x/2 && Math.abs(diff.y) <= panel.getDim().y/2) panel.handleHover(deltaTime);
+		}
+	}
+	
+	/** Executes any necessary operations that occur as a result of keys being pressed
+	 */
+	private void handleKeyPressEvent() {
+		for(Panel panel : panels) {
+			panel.handleKeyPress();
+		}
+	}
+	
+	/** Handles a click event that occurred anywhere on the screen
+	 */
+	private void isJustTouched() {
+		if(Gdx.input.justTouched()) {
+			translateTool.onClick();
+		}
+	}
+	
+	private void isTouched() {
+		if(Gdx.input.isTouched()) {
+			currentlyTouched = true;
+		}
+	}
+	
+	private void isTouchReleased() {
+		if(!Gdx.input.isTouched() && currentlyTouched) {
+			
+		}
+	}
+	
+	/** Carries out all operations that need to occur before rendering
+	 * @param deltaTime
+	 */
+	public void update(float deltaTime) {
+		handleClickEvent();
+		handleKeyPressEvent();
+		handleHover(deltaTime);
+	}
+}

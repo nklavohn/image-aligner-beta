@@ -1,0 +1,5 @@
+package com.labcode.gui.menubar;
+
+public abstract class ListItem {
+
+}

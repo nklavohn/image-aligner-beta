@@ -1,0 +1,35 @@
+package com.labcode.gui.menubar;
+
+import javax.swing.Icon;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.labcode.zstack.ZStack;
+
+public class HotKeyApplier extends ListItem {
+
+	private Icon icon;
+	
+	public HotKeyApplier(String name, String shortcut, Icon icon) {
+		createLabels(name, shortcut);
+		this.icon = icon;
+	}
+	
+	@Override
+	public void displayBatch2() {
+		icon.draw();
+	}
+
+	@Override
+	public void displayShapes2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void isJustTouched() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}

@@ -1,0 +1,51 @@
+package com.labcode.gui.tool;
+
+import com.labcode.edithistory.HistoryEvent;
+import com.labcode.project.Project;
+
+public abstract class Tool {
+
+	protected Project project;
+	protected boolean isActive;
+	
+	public abstract boolean applyHotkeys();
+	public abstract void debugDisplay();
+	public abstract void displayToolShapes();
+	public abstract void displayToolBatch();
+	public abstract void isJustTouched();
+	public abstract void isTouched();
+	public abstract void isTouchReleased();
+	public abstract void onHover();
+	public abstract void onKeyPress();
+	protected abstract HistoryEvent writeHistoryEvent();
+	
+	public Tool(Project project) {
+		this.project = project;
+	}
+	
+	public static Tool getTool(String s, Project project) {
+		switch (s) {
+		//"Select", "Translate", "Rotate", "Zoom", "Save", "Export"
+		case "Select":
+			return new SelectTool(project);
+		case "Translate":
+			return new TranslateTool(project);
+		case "Rotate":
+			return new RotateTool(project);
+		case "Zoom":
+			return new ZoomTool(project);
+		case "Crop":
+			return new CropTool(project);
+		case "MoveImage":
+			return new MoveImageTool(project);
+		default:
+			System.out.println("that tool doesn't exist");
+			return null;
+		}
+	}
+	
+	public boolean isActive() { return isActive; }
+	public void setIsActive(boolean b) { isActive = b; }
+	public void setActive() { isActive = true; }
+	public void setInactive() { isActive = false; }
+}
